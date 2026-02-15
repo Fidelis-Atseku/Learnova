@@ -1,35 +1,45 @@
 :root {
-  --span-color: hsl(180, 91%, 36%);
-  --card-submit-background-color: hsl(200, 97%, 62%);
+    --span-color: hsl(180, 91%, 36%);
+    --card-submit-background-color: hsl(200, 97%, 62%);
 }
 
 .main-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
 .login-card {
-  width: 80%;
-  max-width: 500px;
-  min-height: 500px;
-  border: 2px solid gray;
-  border-radius: 20px;
-  background-color: hsla(0, 0%, 100%, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    min-height: 500px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    background-color: hsla(0, 0%, 100%, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    .content {
+        max-width: 330px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        span {
+            display: inline-block;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        button {
+            transition: transform 0.5s ease;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+    }
 }
-.login-card .content {
-  max-width: 330px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.login-card .content span {
-  cursor: pointer;
-}/*# sourceMappingURL=card.css.map */
