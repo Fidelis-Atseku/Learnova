@@ -1,0 +1,60 @@
+// .login-card {
+//     .sign-in {
+        // display: none;
+//     }
+// }
+.sign-in {
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+        h1 {
+            margin-bottom: 15px;
+        }
+        .subheader {
+            color: gray;
+            margin-bottom: 10px;
+        }
+        .registration-text {
+            .register-page-button {
+                color: var(--span-color);
+            }
+        }
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .password-input-field {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .email-input-field, .password-input-field {
+            display: block;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+        }
+        .buttons {
+            margin-top: 15px;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            gap: 5px;
+            & > * {
+                flex: 1;
+                border-radius: 5px;
+                border: none;
+            }
+            .forgot-password-page-button {
+                background-color: transparent;
+                border: 1px solid gray;
+            }
+            #sign-in-button {
+                background-color: var(--card-submit-background-color);
+            }
+        }
+
+    }
+}
