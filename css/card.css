@@ -3,24 +3,44 @@
   --card-submit-background-color: hsl(200, 97%, 62%);
 }
 
-.main-content {
+.login-content {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: calc(100vh - 86px);
 }
 
 .login-card {
   width: 80%;
   max-width: 500px;
   min-height: 500px;
-  border: 2px solid gray;
   border-radius: 20px;
   background-color: hsla(0, 0%, 100%, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 5px 1px hsla(187, 71%, 50%, 0.4);
   padding: 20px;
+  position: relative;
+}
+.login-card .close-login-btn {
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: hsla(187, 71%, 50%, 0.1);
+  border-radius: 10px;
+  transition: transform 0.2s ease, background-color 0.4s ease;
+  color: #1A237E;
+}
+.login-card .close-login-btn:hover {
+  background-color: hsla(187, 71%, 50%, 0.3);
+}
+.login-card .close-login-btn:active {
+  transform: scale(0.95);
 }
 .login-card .content {
   max-width: 330px;
@@ -42,4 +62,4 @@
 }
 .login-card .content button:hover {
   transform: scale(1.05);
-}
+}/*# sourceMappingURL=card.css.map */
