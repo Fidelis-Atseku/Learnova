@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="css/card.css">
-    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/sign-in.css">
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/forgot-password.css">
@@ -18,6 +17,9 @@
             <header class="main-header shadow-box-1">
 
                 <div class="left-section">
+                    <button class="ls-hamburger-btn active-box-1">
+                        <img src="assets\svg\icons8-hamburger-menu.svg" alt="">
+                    </button>
                     <img class="logo-icon" src="assets\images\learnova-icon.png" alt="">
                     <div class="main-content-name logo-text"><img src="assets\images\learnova-text.png" alt=""></div>
                 </div>
@@ -33,6 +35,8 @@
 
                     <button id="help-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-help-100.png" alt="" class="h-btn-icon">
+                        <img src="assets\images\icons8-collapse-arrow-100.png" alt="">
+                        <div class="role-dropdown"></div>
                     </button>
 
                     <button id="role-btn" class="rh-btn active-box-1">
@@ -88,14 +92,39 @@
                         </button>
                     </div>
 
+                    <div class="instructor-sidebar-content sidebar-content">
+
+                    </div>
+
+                    <div class="admin-sidebar-content sidebar-content">
+
+                    </div>
+
                 </div>
 
                 <div class="index content shadow-box-1"></div>
 
-                <div class="right sidebar chatbot shadow-box-1">
+                <div class="right sidebar chatbot shadow-box-1 collapsed">
                     <button id="rs-collapse-btn">
                         <img src="assets\images\learnova-ai-1.png" alt="" id="rs-collapse-icon">
                     </button>
+                    <div class="input-box">
+                        <div class="prompt-text-area">
+                            <p contenteditable="true" id="prompt-p"></p>
+                        </div>
+                        <div class="features">
+                            <div class="left-section">
+                                <button class="prompt-attach-btn">Attach</button>
+                                <button class="prompt-search-btn">Search</button>
+                                <button class="prompt-context-btn">Context</button>
+                            </div>
+                            <div class="right-section">
+                                <button class="prompt-send-btn">
+                                    <img src="assets\images\icons8-send-letter-100.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="login-content"></div>

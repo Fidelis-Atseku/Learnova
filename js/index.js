@@ -1,52 +1,151 @@
+const left_sidebar = document.querySelector(".left.sidebar");
+const main_header = document.querySelector(".main-header");
+let main_header_height = main_header.getBoundingClientRect().height;
+left_sidebar.style.top = `${main_header_height + 20}px`;
+
+window.addEventListener("resize", () => {
+    main_header_height = main_header.getBoundingClientRect().height;
+    left_sidebar.style.setProperty('--header-height', `${main_header_height}`);
+    left_sidebar.style.top = `${main_header_height + 20}px`;
+})
+
 // -------------------------------
 // Sidebars' dynamic height
 // -------------------------------
 
-const sidebars = document.querySelectorAll(".sidebar");
 const footer = document.querySelector('.main-footer');
 const footerHeight = footer.getBoundingClientRect().height;
 
 const originalSidebarHeights = new Map();
 
-sidebars.forEach(sidebar => {
-    if (sidebar.classList.contains("left")) {
-        originalSidebarHeights.set(sidebar, sidebar.getBoundingClientRect().height);
-    } else if (sidebar.classList.contains("right")) {
-        originalSidebarHeights.set(sidebar, window.innerHeight - 86);
-    }
-});
+function updateOriginalSidebarHeight(){
+    originalSidebarHeights.set(left_sidebar, window.innerHeight - (main_header_height + 30));
+}
 
-window.addEventListener("scroll", () => {
+function updateSidebarHeight(){
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollPosition = window.scrollY + window.innerHeight;
 
-    sidebars.forEach(sidebar => {
-        if (sidebar.classList.contains("right") && right_sidebar_collapsed) return;
+    const originalHeight = originalSidebarHeights.get(left_sidebar);
 
-        const originalHeight = originalSidebarHeights.get(sidebar);
+    if (scrollHeight - scrollPosition <= footerHeight + 10) {
+        left_sidebar.style.height = `${originalHeight - ((footerHeight + 10) - (scrollHeight - scrollPosition))}px`;
+    } else {
+        left_sidebar.style.height = `${originalHeight}px`;
+    }
+}
 
-        if (scrollHeight - scrollPosition <= footerHeight + 10) {
-            sidebar.style.height = `${originalHeight - ((footerHeight + 10) - (scrollHeight - scrollPosition))}px`;
-        } else {
-            sidebar.style.height = `${originalHeight}px`;
-        }
-    });
+updateOriginalSidebarHeight();
+
+window.addEventListener("DOMContentLoaded", () => {
+    updateOriginalSidebarHeight();
+    updateSidebarHeight();
 });
 
-// -------------------------------
-// Left sidebar dynamic width
-// -------------------------------
+window.addEventListener("load", () => {
+    updateOriginalSidebarHeight();
+    updateSidebarHeight();
+});
 
-const left_sidebar = document.querySelector(".left.sidebar");
-let left_sidebar_collapsed = false;
+window.addEventListener("resize", () => {
+    updateOriginalSidebarHeight();
+    updateSidebarHeight();
+})
+
+window.addEventListener("scroll", () => {
+    updateSidebarHeight();
+});
+
+// ---------------------
+// Left sidebar collapse
+// ---------------------
+
+let left_sidebar_collapsed = true;
+left_sidebar.classList.add("ls-collapsed");
 const left_sidebar_collapse_btn = document.getElementById("ls-collapse-btn");
-const left_sidebar_collapse_btn_icon = document.querySelector(".ls-collapse-icon");
+
+
+const ls_collapse_observer = new MutationObserver(() => {
+    left_sidebar_collapsed = left_sidebar.classList.contains("ls-collapsed");
+});
+
+ls_collapse_observer.observe(left_sidebar, {
+    attributes: true,
+    attributeFilter: ["class"]
+});
+
+function collapse_left_sidebar() {
+    left_sidebar.classList.add("ls-collapsed");
+    left_sidebar.classList.remove("ls-expanded");
+}
+function expand_left_sidebar() {
+    left_sidebar.classList.remove("ls-collapsed");
+    left_sidebar.classList.add("ls-expanded");
+}
 
 left_sidebar_collapse_btn.addEventListener("click", () => {
-    left_sidebar_collapsed = !left_sidebar_collapsed;
-    left_sidebar.style.width = left_sidebar_collapsed ? "200px" : "75px";
-    left_sidebar_collapse_btn_icon.style.transform = left_sidebar_collapsed ? "scaleX(-1)" : "scaleX(1)";
+
+    if (left_sidebar_collapsed == false){
+        collapse_left_sidebar();
+    }
+    else {
+        expand_left_sidebar();
+    }
+})
+
+const mq = window.matchMedia("(max-width: 500px)");
+mq.addEventListener("change", (e) => {
+
+    if (e.matches) {
+
+        left_sidebar.classList.add("ls-hidden");
+        if (!left_sidebar.classList.contains("collapsed")) {
+            collapse_left_sidebar();
+        }
+
+    }
+
 });
+
+// -----------------
+// Left sidebar hide
+// -----------------
+
+const ls_hamburger_btn = document.querySelector(".ls-hamburger-btn");
+const indexContent = document.querySelector(".index.content");
+let sidebar_hidden = true;
+
+const ls_hide_observer = new MutationObserver(() => {
+
+    sidebar_hidden = left_sidebar.classList.contains("ls-hidden");
+
+});
+
+ls_hide_observer.observe(left_sidebar, {
+    attributes: true,
+    attributeFilter: ["class"]
+});
+
+function hide_left_sidebar() {
+    left_sidebar.classList.remove("ls-shown");
+    left_sidebar.classList.add("ls-hidden");
+    if (left_sidebar_collapsed == false){
+        collapse_left_sidebar();
+    }
+}
+function show_left_sidebar() {
+    left_sidebar.classList.remove("ls-hidden");
+    left_sidebar.classList.add("ls-shown");
+}
+
+ls_hamburger_btn.addEventListener("click", () => {
+    if(sidebar_hidden){
+        show_left_sidebar();
+    }
+    else {
+        hide_left_sidebar();
+    }
+})
 
 // -------------------------------
 // Right sidebar dynamic height & width
@@ -56,44 +155,17 @@ const right_sidebar_collapse_btn = document.getElementById("rs-collapse-btn");
 const right_sidebar = document.querySelector(".right.sidebar");
 let right_sidebar_collapsed = true;
 
+right_sidebar.classList.add("collapsed");
+
 right_sidebar_collapse_btn.addEventListener("click", () => {
     right_sidebar_collapsed = !right_sidebar_collapsed;
-
-    if (!right_sidebar_collapsed) {
-        const expandedHeight = window.innerHeight - 86;
-        originalSidebarHeights.set(right_sidebar, expandedHeight);
-
-        const scrollHeight = document.documentElement.scrollHeight;
-        const scrollPosition = window.scrollY + window.innerHeight;
-        const footerOverlap = Math.max(0, (footerHeight + 10) - (scrollHeight - scrollPosition));
-        right_sidebar.style.height = `${expandedHeight - footerOverlap}px`;
-    } else {
-        right_sidebar.style.height = "50px";
-    }
-
-    right_sidebar.style.position = right_sidebar_collapsed ? "fixed" : "sticky";
-    right_sidebar.style.width = right_sidebar_collapsed ? "50px" : "200px";
-    right_sidebar.style.top = right_sidebar_collapsed ? "" : "76px";
-    right_sidebar.style.bottom = right_sidebar_collapsed ? "90px" : "10px";
-    right_sidebar.style.right = right_sidebar_collapsed ? "30px" : "0";
-
-    // -------------------------------
-    // Position the collapse button
-    // -------------------------------
-    if (!right_sidebar_collapsed) {
-        right_sidebar_collapse_btn.style.position = "absolute";
-        right_sidebar_collapse_btn.style.top = "40px";
-        right_sidebar_collapse_btn.style.right = "40px";
-    } else {
-        right_sidebar_collapse_btn.style.position = "";
-        right_sidebar_collapse_btn.style.top = "";
-        right_sidebar_collapse_btn.style.right = "";
-    }
+    right_sidebar.classList.toggle("collapsed");
+    right_sidebar.classList.toggle("expanded");
 });
 
-    // --------------------------------
-    // Left sidebar button hover effect
-    // --------------------------------
+// --------------------------------
+// Left sidebar button hover effect
+// --------------------------------
 
 class ls_btn_hover {
     constructor(element, text){
@@ -104,13 +176,13 @@ class ls_btn_hover {
         this.element.style.setProperty('--after-display', 'none');
 
         this.element.addEventListener('mouseenter', () => {
-            if (!left_sidebar_collapsed){
+            if (left_sidebar_collapsed){
                 this.show();
             }
         });
 
         this.element.addEventListener('mouseleave', () => {
-            if (!left_sidebar_collapsed){
+            if (left_sidebar_collapsed){
                 this.hide();
             }
         });
@@ -133,10 +205,9 @@ ls_btn.forEach((btn, index) => {
     new ls_btn_hover(btn, ls_btn_txt[index].textContent)
 });
 
-    // ----------------
-    // Login page fetch
-    // ----------------
-
+// ----------------
+// Login page fetch
+// ----------------
 
 import { login_js } from "./login.js";
 
@@ -167,5 +238,27 @@ profile_button.addEventListener("click", () => {
     header_right_section.style.display = 'none';
     login_content.style.display = 'flex';
 
+});
 
-})
+
+
+// ----------------------------
+// Prompt paragraph placeholder
+// ----------------------------
+
+
+const prompt_p = document.getElementById("prompt-p");
+
+function updatePlaceholder() {
+  if (prompt_p.textContent.trim() === ""){
+    prompt_p.classList.add("empty");
+  } else {
+    prompt_p.classList.remove("empty");
+  }
+}
+
+updatePlaceholder();
+
+prompt_p.addEventListener("input", updatePlaceholder);
+prompt_p.addEventListener("focus", updatePlaceholder);
+prompt_p.addEventListener("blur", updatePlaceholder);
