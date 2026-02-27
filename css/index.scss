@@ -132,7 +132,6 @@ main {
             position: relative;
             // overflow: visible;
             .dropdown-arrow {
-                transform: rotateZ(90deg);
                 width: 10px;
                 height: 10px;
             }
@@ -256,7 +255,7 @@ main {
         }
         width: 75px;
         .ls-collapse-icon {
-            transform: scaleX(1);
+            transform: scaleX(1) rotateZ(-90deg);
         }
     }
     &.ls-expanded {
@@ -265,15 +264,39 @@ main {
         }
         width: 200px;
         .ls-collapse-icon {
-            transform: scaleX(-1);
+            transform: scaleX(-1) rotateZ(-90deg);
         }
     }
 
     .sidebar-content {
         flex-direction: column;
         gap: 10px;
-        // overflow-x: visible;
-        // width: 300px;
+        .ls-dropdown {
+            width: 100%;
+            // height: 75px;
+            // height: auto;
+            border-radius: 10px;
+            background-color: hsla(187, 71%, 50%, 0.1);
+            // overflow: hidden;
+            .ls-btn {
+                height: 50px;
+            }
+            .ls-btn-dropdown {
+                width: 100%;
+                height: 20px;
+                border: none;
+                margin-top: 5px;
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+                background-color: transparent;
+                &:hover {
+                    background-color: hsla(187, 71%, 50%, 0.1);
+                }
+                img {
+                    height: 10px;
+                }
+            }
+        }
         .ls-btn {
             width: 100%;
             height: 50px;
@@ -353,6 +376,7 @@ main {
         .ls-collapse-icon {
             width: 50%;
             height: 50%;
+            // transform: rotateZ(-90deg);
             transition: transform 0.5s ease;
         }
     }
@@ -558,7 +582,7 @@ main {
                 }
                 width: 70px;
                 .ls-collapse-icon {
-                    transform: scaleX(1);
+                    transform: scaleY(1);
                 }
             }
             &.ls-expanded {
@@ -567,7 +591,7 @@ main {
                 }
                 width: 150px;
                 .ls-collapse-icon {
-                    transform: scaleX(-1);
+                    transform: scaleY(-1);
                 }
             }
             &.ls-hidden {

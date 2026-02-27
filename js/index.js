@@ -273,20 +273,24 @@ prompt_p.addEventListener("blur", updatePlaceholder);
 
 const role_btn = document.querySelector("#role-btn");
 const role_dropdown = document.querySelector(".role-dropdown");
-const dropdown_arrow = document.querySelector(".dropdown-arrow");
+const role_dropdown_arrow = document.querySelector(".dropdown-arrow");
 let role_dropdown_hidden = true;
+
+function flip_dropdown_arrow(dropdown_arrow, flipped){
+    dropdown_arrow.style.transform = flipped ? "scaleY(1)" : "scaleY(-1)";
+}
 
 function hide_role_dropdown() {
     role_dropdown.classList.remove("rd-shown");
     role_dropdown.classList.add("rd-hidden");
-    dropdown_arrow.style.transform = "scaleX(1) rotateZ(90deg)";
+    flip_dropdown_arrow(role_dropdown_arrow, !role_dropdown_hidden);
     role_btn.style.backgroundColor = "";
     role_dropdown_hidden = true;
 }
 function show_role_dropdown() {
     role_dropdown.classList.remove("rd-hidden");
     role_dropdown.classList.add("rd-shown");
-    dropdown_arrow.style.transform = "scaleX(-1) rotateZ(-90deg)";
+    flip_dropdown_arrow(role_dropdown_arrow, !role_dropdown_hidden);
     role_btn.style.backgroundColor = "hsla(187, 71%, 50%, 0.3)";
     role_dropdown_hidden = false;
 }
@@ -350,3 +354,17 @@ const scrollable_observer = new ResizeObserver(() => {
     }
 })
 scrollable_observer.observe(left_sidebar);
+
+// ----------------------------
+// left sidebar button dropdown
+// ----------------------------
+
+const ls_btn_dropdown = document.querySelector(".ls-btn-dropdown");
+const ls_courses = document.querySelector(".ls-courses");
+const ls_btn_dropdown_arrow = document.querySelector(".ls-btn-dropdown-arrow");
+let ls_btn_dropdown_arrow_flipped = false;
+
+ls_btn_dropdown.addEventListener("click", () => {
+    flip_dropdown_arrow(ls_btn_dropdown_arrow, ls_btn_dropdown_arrow_flipped);
+    ls_btn_dropdown_arrow_flipped = !ls_btn_dropdown_arrow_flipped;
+})

@@ -133,7 +133,6 @@ main > * {
   position: relative;
 }
 .main-header .right-section #role-btn .dropdown-arrow {
-  transform: rotateZ(90deg);
   width: 10px;
   height: 10px;
 }
@@ -243,7 +242,7 @@ main > * {
   width: 75px;
 }
 .left.sidebar.ls-collapsed .ls-collapse-icon {
-  transform: scaleX(1);
+  transform: scaleX(1) rotateZ(-90deg);
 }
 .left.sidebar.ls-expanded.scrolling {
   width: 206px;
@@ -252,11 +251,34 @@ main > * {
   width: 200px;
 }
 .left.sidebar.ls-expanded .ls-collapse-icon {
-  transform: scaleX(-1);
+  transform: scaleX(-1) rotateZ(-90deg);
 }
 .left.sidebar .sidebar-content {
   flex-direction: column;
   gap: 10px;
+}
+.left.sidebar .sidebar-content .ls-dropdown {
+  width: 100%;
+  border-radius: 10px;
+  background-color: hsla(187, 71%, 50%, 0.1);
+}
+.left.sidebar .sidebar-content .ls-dropdown .ls-btn {
+  height: 50px;
+}
+.left.sidebar .sidebar-content .ls-dropdown .ls-btn-dropdown {
+  width: 100%;
+  height: 20px;
+  border: none;
+  margin-top: 5px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: transparent;
+}
+.left.sidebar .sidebar-content .ls-dropdown .ls-btn-dropdown:hover {
+  background-color: hsla(187, 71%, 50%, 0.1);
+}
+.left.sidebar .sidebar-content .ls-dropdown .ls-btn-dropdown img {
+  height: 10px;
 }
 .left.sidebar .sidebar-content .ls-btn {
   width: 100%;
@@ -520,7 +542,7 @@ main > * {
     width: 70px;
   }
   .main-content .left.sidebar.ls-collapsed .ls-collapse-icon {
-    transform: scaleX(1);
+    transform: scaleY(1);
   }
   .main-content .left.sidebar.ls-expanded.scrolling {
     width: 160px;
@@ -529,7 +551,7 @@ main > * {
     width: 150px;
   }
   .main-content .left.sidebar.ls-expanded .ls-collapse-icon {
-    transform: scaleX(-1);
+    transform: scaleY(-1);
   }
   .main-content .left.sidebar.ls-hidden {
     transform: translateX(-85px);
