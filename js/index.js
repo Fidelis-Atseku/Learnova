@@ -64,7 +64,6 @@ let left_sidebar_collapsed = true;
 left_sidebar.classList.add("ls-collapsed");
 const left_sidebar_collapse_btn = document.getElementById("ls-collapse-btn");
 
-
 const ls_collapse_observer = new MutationObserver(() => {
     left_sidebar_collapsed = left_sidebar.classList.contains("ls-collapsed");
 });
@@ -85,7 +84,7 @@ function expand_left_sidebar() {
 
 left_sidebar_collapse_btn.addEventListener("click", () => {
 
-    if (left_sidebar_collapsed == false){
+    if (!left_sidebar_collapsed){
         collapse_left_sidebar();
     }
     else {
@@ -94,17 +93,17 @@ left_sidebar_collapse_btn.addEventListener("click", () => {
 })
 
 const mq = window.matchMedia("(max-width: 500px)");
+if (mq.matches){
+    left_sidebar.classList.add("ls-hidden");
+}
 mq.addEventListener("change", (e) => {
 
     if (e.matches) {
-
         left_sidebar.classList.add("ls-hidden");
         if (!left_sidebar.classList.contains("collapsed")) {
             collapse_left_sidebar();
         }
-
     }
-
 });
 
 // -----------------
@@ -146,6 +145,10 @@ ls_hamburger_btn.addEventListener("click", () => {
         hide_left_sidebar();
     }
 })
+
+export function show_hamburger_btn() {
+    ls_hamburger_btn.style.display = 'flex';
+}
 
 // -------------------------------
 // Right sidebar dynamic height & width
@@ -237,7 +240,7 @@ profile_button.addEventListener("click", () => {
     main_content.style.display = 'none';
     header_right_section.style.display = 'none';
     login_content.style.display = 'flex';
-
+    ls_hamburger_btn.style.display = 'none';
 });
 
 
@@ -250,11 +253,12 @@ profile_button.addEventListener("click", () => {
 const prompt_p = document.getElementById("prompt-p");
 
 function updatePlaceholder() {
-  if (prompt_p.textContent.trim() === ""){
-    prompt_p.classList.add("empty");
-  } else {
-    prompt_p.classList.remove("empty");
-  }
+    if (prompt_p.textContent.trim() === ""){
+        prompt_p.classList.add("empty");
+    }
+    else {
+        prompt_p.classList.remove("empty");
+    }
 }
 
 updatePlaceholder();
@@ -262,3 +266,87 @@ updatePlaceholder();
 prompt_p.addEventListener("input", updatePlaceholder);
 prompt_p.addEventListener("focus", updatePlaceholder);
 prompt_p.addEventListener("blur", updatePlaceholder);
+
+// -------------
+// Role dropdown
+// -------------
+
+const role_btn = document.querySelector("#role-btn");
+const role_dropdown = document.querySelector(".role-dropdown");
+const dropdown_arrow = document.querySelector(".dropdown-arrow");
+let role_dropdown_hidden = true;
+
+function hide_role_dropdown() {
+    role_dropdown.classList.remove("rd-shown");
+    role_dropdown.classList.add("rd-hidden");
+    dropdown_arrow.style.transform = "scaleX(1) rotateZ(90deg)";
+    role_btn.style.backgroundColor = "";
+    role_dropdown_hidden = true;
+}
+function show_role_dropdown() {
+    role_dropdown.classList.remove("rd-hidden");
+    role_dropdown.classList.add("rd-shown");
+    dropdown_arrow.style.transform = "scaleX(-1) rotateZ(-90deg)";
+    role_btn.style.backgroundColor = "hsla(187, 71%, 50%, 0.3)";
+    role_dropdown_hidden = false;
+}
+
+role_dropdown.addEventListener("blur", () => {
+    // set(hide_role_dropdown(), 100);
+    hide_role_dropdown();
+})
+
+role_btn.addEventListener("click", () => {
+    if(role_dropdown_hidden){
+        show_role_dropdown();
+    }
+    else {
+        hide_role_dropdown();
+    }
+})
+
+
+// ----------------------
+// Sidebar content toggle
+// ----------------------
+
+const student_role_btn = document.querySelector(".student-role-btn");
+const instructor_role_btn = document.querySelector(".instructor-role-btn");
+const admin_role_btn = document.querySelector(".admin-role-btn");
+const student_sidebar_content = document.querySelector(".student-sidebar-content");
+const instructor_sidebar_content = document.querySelector(".instructor-sidebar-content");
+const admin_sidebar_content = document.querySelector(".admin-sidebar-content");
+
+student_role_btn.addEventListener("click", () => {
+    role_toggle("student");
+    hide_role_dropdown();
+})
+instructor_role_btn.addEventListener("click", () => {
+    role_toggle("instructor");
+    hide_role_dropdown();
+})
+admin_role_btn.addEventListener("click", () => {
+    role_toggle("admin");
+    hide_role_dropdown();
+})
+
+function role_toggle(role){
+    student_sidebar_content.style.display = role === "student" ? "flex" : "none";
+    instructor_sidebar_content.style.display = role === "instructor" ? "flex" : "none";
+    admin_sidebar_content.style.display = role === "admin" ? "flex" : "none";
+}
+
+// ----------------
+// Sidebar overflow
+// ----------------
+
+const scrollable_observer = new ResizeObserver(() => {
+    const isOverflowing = left_sidebar.scrollHeight > left_sidebar.clientHeight || left_sidebar.scrollWidth > left_sidebar.clientWidth;
+    if (isOverflowing){
+        left_sidebar.classList.add("scrolling");
+    }
+    else {
+        left_sidebar.classList.remove("scrolling");
+    }
+})
+scrollable_observer.observe(left_sidebar);

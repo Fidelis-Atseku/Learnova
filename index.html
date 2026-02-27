@@ -35,13 +35,28 @@
 
                     <button id="help-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-help-100.png" alt="" class="h-btn-icon">
-                        <img src="assets\images\icons8-collapse-arrow-100.png" alt="">
-                        <div class="role-dropdown"></div>
                     </button>
 
                     <button id="role-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-roles-100 (1).png" alt="" class="h-btn-icon">
+                        <img src="assets\images\icons8-collapse-arrow-100.png" alt="" class="dropdown-arrow">
                     </button>
+                    
+                    <div class="role-dropdown rd-hidden">
+                        <button class="student-role-btn">
+                            <img src="assets\images\icons8-student-male-100.png" alt="">
+                            <p>Student</p>
+                        </button>
+                        <button class="instructor-role-btn">
+                            <img src="assets\images\icons8-training-100.png" alt="">
+                            <p>Instructor</p>
+                        </button>
+                        <button class="admin-role-btn">
+                            <img src="assets\images\icons8-admin-100.png" alt="">
+                            <p>Admin</p>
+                        </button>                        
+                    </div>
+
 
                     <button id="profile-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-account-100.png" alt="profile" class="h-btn-icon">
@@ -57,46 +72,105 @@
                     </button>
                     
                     <div class="student-sidebar-content sidebar-content">
-                        <button id="ls-home" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-home ls-btn hover-box-2 active-box-1">
                             <img src="assets\svg\icons8-home.svg" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">Home</span>
                         </button>
 
-                        <button id="ls-courses" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-courses ls-btn hover-box-2 active-box-1">
                             <img src="assets\images\icons8-read-100.png" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">My Courses</span>
                         </button>
-                        <button id="ls-explore" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-explore ls-btn hover-box-2 active-box-1">
                             <img src="assets\svg\icons8-binoculars.svg" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">Explore Courses</span>
                         </button>
 
-                        <button id="ls-institution" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-institutions ls-btn hover-box-2 active-box-1">
                             <img src="assets\images\icons8-institution-100.png" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">Institutions</span>
                         </button>
 
-                        <button id="ls-discussion" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-discussions ls-btn hover-box-2 active-box-1">
                             <img src="assets\images\icons8-discussion-100.png" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">Discussions</span>
                         </button>
 
-                        <button id="ls-assignment" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-assignment ls-btn hover-box-2 active-box-1">
                             <img src="assets\images\icons8-assignment-100.png" alt="" class="ls-btn-icon">
-                            <span class="ls-btn-text">Assignments</span>
+                            <span class="ls-btn-text">Assignment</span>
                         </button>
 
-                        <button id="ls-settings" class="ls-btn hover-box-2 active-box-1">
+                        <button class="ls-settings ls-btn hover-box-2 active-box-1">
                             <img src="assets\svg\icons8-settings.svg" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">Settings</span>
                         </button>
                     </div>
 
                     <div class="instructor-sidebar-content sidebar-content">
-
+                        <button class="ls-institutions ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-institution-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Institution</span>
+                        </button>
+                        <button class="ls-courses ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-read-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">My Courses</span>
+                        </button>
+                        <button class="ls-create-course ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-read-plus-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Create course</span>
+                        </button>
+                        <button class="ls-discussions ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-discussion-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Discussions</span>
+                        </button>
+                        <button class="ls-assignment ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-assignment-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Assignment</span>
+                        </button>
+                        <button class="ls-quizzes ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-quiz-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Quizzes</span>
+                        </button>
+                        <button class="ls-submissions ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-submit-document-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Student submissions</span>
+                        </button>
+                        <button class="ls-announcements ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-announcement-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Announcements</span>
+                        </button>
+                        <button class="ls-messages ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-message-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Messages</span>
+                        </button>
+                        <button class="ls-settings ls-btn hover-box-2 active-box-1">
+                            <img src="assets\svg\icons8-settings.svg" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Settings</span>
+                        </button>
                     </div>
 
                     <div class="admin-sidebar-content sidebar-content">
+                        <button class="ls-management ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-adjust-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Management</span>
+                        </button>
+                        <button class="ls-r&a ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-web-analytics-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Reports & Analytics</span>
+                        </button>
+                        <button class="ls-messages ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-message-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Messages</span>
+                        </button>
+                        <button class="ls-announcements ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-announcement-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">Announcements</span>
+                        </button>
+                        <button class="ls-admin-settings ls-btn hover-box-2 active-box-1">
+                            <img src="assets\images\icons8-settings-100.png" alt="" class="ls-btn-icon">
+                            <span class="ls-btn-text">System Settings</span>
+                        </button>
 
                     </div>
 
