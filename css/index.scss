@@ -147,6 +147,7 @@ main {
             border-radius: 10px;
             overflow: hidden;
             padding: 5px;
+            box-shadow: 5px 5px 5px gray;
             // display: flex;
             // flex-direction: column;
             &.rd-shown {
@@ -226,7 +227,9 @@ main {
 .left.sidebar {
     position: fixed;
     bottom: 10px;
+    top: 76px;
     width: 75px;
+    // height: 76px;
     padding: 15px;
     transition: width 0.5s ease, transform 0.5s ease;
     -webkit-backdrop-filter: blur(5px);
@@ -294,6 +297,35 @@ main {
                 }
                 img {
                     height: 10px;
+                }
+            }
+            .dropdown {
+                display: none;
+                flex-direction: column;
+                gap: 3px;
+                padding: 0 5px;
+                padding-bottom: 10px;
+                .ls-dropdown-btn {
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 7px;
+                    padding: 2px 7.5px;
+                    overflow: hidden;
+                    border-radius: 5px;
+                    background-color: hsl(235, 66%, 90%);
+                    transition: background-color 0.5s ease;
+                    &:hover {
+                        background-color: hsla(187, 71%, 50%, 0.3);
+                    }
+                    .ls-dropdown-icon {
+                        width: 20px;
+                        height: 20px;
+                    }
+                    .ls-dropdown-text {
+                        font-size: 0.6rem;
+                        color: #1A237E;
+                    }
                 }
             }
         }
@@ -396,7 +428,6 @@ main {
     overscroll-behavior: contain;
     z-index: 1;
     .input-box {
-        // border: 2px solid;
         background-color: hsl(235, 66%, 60%);
         border-radius: 30px;
         padding: 0 20px;
@@ -414,10 +445,8 @@ main {
             overflow-y: auto;
             border: none;
             color: #1A237E;
-            // padding-left: 10px;
             display: flex;
             align-items: center;
-            // justify-content: center;
             #prompt-p {
                 color: hsl(187, 71%, 80%);
                 width: 100%;
@@ -582,7 +611,7 @@ main {
                 }
                 width: 70px;
                 .ls-collapse-icon {
-                    transform: scaleY(1);
+                    transform: scaleX(1) rotateZ(-90deg);
                 }
             }
             &.ls-expanded {
@@ -591,7 +620,7 @@ main {
                 }
                 width: 150px;
                 .ls-collapse-icon {
-                    transform: scaleY(-1);
+                    transform: scaleX(-1) rotateZ(-90deg);
                 }
             }
             &.ls-hidden {
@@ -604,7 +633,7 @@ main {
             .sidebar-content {
                 .ls-btn {
                     height: 35px;
-                    .ls-btn-icon {
+                    &-icon {
                         width: 20px;
                         height: 20px;
                     }
@@ -619,10 +648,3 @@ main {
         }
     }
 }
-// @media (min-width: 499px){
-//     .main-content {
-//         .left.sidebar {
-//             width: 75px;
-//         }
-//     }
-// }

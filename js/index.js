@@ -16,17 +16,15 @@ window.addEventListener("resize", () => {
 const footer = document.querySelector('.main-footer');
 const footerHeight = footer.getBoundingClientRect().height;
 
-const originalSidebarHeights = new Map();
-
-function updateOriginalSidebarHeight(){
-    originalSidebarHeights.set(left_sidebar, window.innerHeight - (main_header_height + 30));
+function getOriginalSidebarHeight(){
+    return window.innerHeight - (main_header_height + 30);
 }
 
-function updateSidebarHeight(){
+export function updateSidebarHeight(){
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollPosition = window.scrollY + window.innerHeight;
 
-    const originalHeight = originalSidebarHeights.get(left_sidebar);
+    const originalHeight = getOriginalSidebarHeight();
 
     if (scrollHeight - scrollPosition <= footerHeight + 10) {
         left_sidebar.style.height = `${originalHeight - ((footerHeight + 10) - (scrollHeight - scrollPosition))}px`;
@@ -35,20 +33,20 @@ function updateSidebarHeight(){
     }
 }
 
-updateOriginalSidebarHeight();
+// updateOriginalSidebarHeight();
 
 window.addEventListener("DOMContentLoaded", () => {
-    updateOriginalSidebarHeight();
+    getOriginalSidebarHeight();
     updateSidebarHeight();
 });
 
 window.addEventListener("load", () => {
-    updateOriginalSidebarHeight();
+    getOriginalSidebarHeight();
     updateSidebarHeight();
 });
 
 window.addEventListener("resize", () => {
-    updateOriginalSidebarHeight();
+    getOriginalSidebarHeight();
     updateSidebarHeight();
 })
 
@@ -321,16 +319,27 @@ const student_sidebar_content = document.querySelector(".student-sidebar-content
 const instructor_sidebar_content = document.querySelector(".instructor-sidebar-content");
 const admin_sidebar_content = document.querySelector(".admin-sidebar-content");
 
+function switch_role_btn_icon(btn) {
+    const role_btn_icon = document.querySelector(".role-btn-icon");
+    role_btn_icon.src = btn.src;
+}
+
 student_role_btn.addEventListener("click", () => {
+    const student_role_btn_icon = document.querySelector(".student-role-btn img");
     role_toggle("student");
+    switch_role_btn_icon(student_role_btn_icon);
     hide_role_dropdown();
 })
 instructor_role_btn.addEventListener("click", () => {
+    const instructor_role_btn_icon = document.querySelector(".instructor-role-btn img");
     role_toggle("instructor");
+    switch_role_btn_icon(instructor_role_btn_icon);
     hide_role_dropdown();
 })
 admin_role_btn.addEventListener("click", () => {
+    const admin_role_btn_icon = document.querySelector(".admin-role-btn img");
     role_toggle("admin");
+    switch_role_btn_icon(admin_role_btn_icon);
     hide_role_dropdown();
 })
 
@@ -359,12 +368,20 @@ scrollable_observer.observe(left_sidebar);
 // left sidebar button dropdown
 // ----------------------------
 
-const ls_btn_dropdown = document.querySelector(".ls-btn-dropdown");
-const ls_courses = document.querySelector(".ls-courses");
-const ls_btn_dropdown_arrow = document.querySelector(".ls-btn-dropdown-arrow");
 let ls_btn_dropdown_arrow_flipped = false;
 
-ls_btn_dropdown.addEventListener("click", () => {
-    flip_dropdown_arrow(ls_btn_dropdown_arrow, ls_btn_dropdown_arrow_flipped);
-    ls_btn_dropdown_arrow_flipped = !ls_btn_dropdown_arrow_flipped;
+const dropdown = document.querySelectorAll(".dropdown");
+const ls_btn_dropdown = document.querySelectorAll(".ls-btn-dropdown");
+const ls_btn_dropdown_arrow = document.querySelectorAll(".ls-btn-dropdown-arrow");
+
+ls_btn_dropdown.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+        flip_dropdown_arrow(ls_btn_dropdown_arrow[index], ls_btn_dropdown_arrow_flipped);
+        dropdown[index].style.display = ls_btn_dropdown_arrow_flipped ? "none" : "flex";
+        ls_btn_dropdown_arrow_flipped = !ls_btn_dropdown_arrow_flipped;
+    });
 })
+
+// ----------------------------
+// left sidebar button dropdown
+// ----------------------------

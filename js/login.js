@@ -29,6 +29,8 @@ export function login_js(onClose){
     close_login_btn.addEventListener("click", () => {
         onClose();
         show_hamburger_btn();
+        updateSidebarHeight();
     })
 }
 import { show_hamburger_btn } from "./index.js";
+import { updateSidebarHeight } from "./index.js";
