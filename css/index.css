@@ -19,6 +19,7 @@
 
 body {
   min-height: 100vh;
+  width: 100;
   padding: 10px;
   background-image: url("/assets/images/body_background.png");
   background-repeat: repeat;
@@ -29,6 +30,7 @@ body {
 
 body::-webkit-scrollbar, html::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 body::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
   background-color: #7cdce9;
@@ -36,6 +38,10 @@ body::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
   background-color: #1A237E;
   border-radius: 5px;
+  cursor: grab;
+}
+body::-webkit-scrollbar-thumb:active, html::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
 }
 
 main {
@@ -236,6 +242,10 @@ main > * {
 .left.sidebar::-webkit-scrollbar-thumb {
   background-color: #1A237E;
   border-radius: 5px;
+  cursor: grab;
+}
+.left.sidebar::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
 }
 .left.sidebar.ls-collapsed.scrolling {
   width: 81px;
@@ -272,8 +282,7 @@ main > * {
   height: 20px;
   border: none;
   margin-top: 5px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 7px;
   background-color: transparent;
 }
 .left.sidebar .sidebar-content .ls-dropdown .ls-btn-dropdown:hover {
@@ -420,15 +429,32 @@ main > * {
   color: #1A237E;
   display: flex;
   align-items: center;
+  padding: 10px 0;
 }
 .right.sidebar .input-box .prompt-text-area #prompt-p {
   color: hsl(187, 71%, 80%);
   width: 100%;
+  height: 100%;
+  overflow: auto;
   position: relative;
+}
+.right.sidebar .input-box .prompt-text-area #prompt-p::-webkit-scrollbar {
+  width: 10px;
+}
+.right.sidebar .input-box .prompt-text-area #prompt-p::-webkit-scrollbar-track {
+  background-color: #7cdce9;
+  border-radius: 10px;
+}
+.right.sidebar .input-box .prompt-text-area #prompt-p::-webkit-scrollbar-thumb {
+  background-color: #1A237E;
+  border-radius: 5px;
+  cursor: grab;
+}
+.right.sidebar .input-box .prompt-text-area #prompt-p::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
 }
 .right.sidebar .input-box .prompt-text-area #prompt-p.empty::before {
   color: hsl(187, 71%, 70%);
-  cursor: text;
   position: absolute;
   top: 0;
   left: 0;
