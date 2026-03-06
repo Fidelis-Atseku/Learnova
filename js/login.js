@@ -30,7 +30,9 @@ export function login_js(onClose){
         onClose();
         show_hamburger_btn();
         updateSidebarHeight();
+        page_title.style.display = 'block';
     })
 }
 import { show_hamburger_btn } from "./index.js";
 import { updateSidebarHeight } from "./index.js";
+import { page_title } from "./index.js";

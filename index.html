@@ -24,6 +24,10 @@
                     <div class="main-content-name logo-text"><img src="assets\images\learnova-text.png" alt=""></div>
                 </div>
 
+                <div class="middle-section">
+                    <h1 class="page-title">My Courses</h1>
+                </div>
+
                 <div class="right-section">
                     <button id="calendar-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-calendar-100.png" alt="" class="h-btn-icon">
@@ -33,16 +37,12 @@
                         <img src="assets\images\icons8-notification-64.png" alt="" class="h-btn-icon">
                     </button>
 
-                    <button id="help-btn" class="rh-btn active-box-1">
-                        <img src="assets\images\icons8-help-100.png" alt="" class="h-btn-icon">
-                    </button>
-
                     <button id="role-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-roles-100 (1).png" alt="" class="h-btn-icon role-btn-icon">
-                        <img src="assets\images\icons8-collapse-arrow-100.png" alt="" class="dropdown-arrow">
+                        <img src="assets\images\icons8-collapse-arrow-100.png" alt="" class="role-dropdown-arrow">
                     </button>
                     
-                    <div class="role-dropdown rd-hidden">
+                    <div class="role-dropdown rd-hidden dropdown">
                         <button class="student-role-btn">
                             <img src="assets\images\icons8-student-male-100.png" alt="">
                             <p>Student</p>
@@ -56,7 +56,6 @@
                             <p>Admin</p>
                         </button>                        
                     </div>
-
 
                     <button id="profile-btn" class="rh-btn active-box-1">
                         <img src="assets\images\icons8-account-100.png" alt="profile" class="h-btn-icon">
@@ -77,15 +76,17 @@
                             <span class="ls-btn-text">Home</span>
                         </button>
 
-                        <div class="ls-dropdown">
-                            <button class="ls-courses ls-btn ls-dropdown hover-box-2 active-box-1">
+                        <div class="ls-dropdown-set dropdown-set">
+                            <button class="ls-my-courses ls-btn dropdown hover-box-2 active-box-1 ">
                                 <img src="assets\images\icons8-read-100.png" alt="" class="ls-btn-icon">
-                                <span class="ls-btn-text">My Courses</span>
+                                <span class="ls-btn-text set-label">My Courses</span>
                             </button>
-                            <button class="ls-btn-dropdown">
-                                <img class="ls-btn-dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
+
+                            <button class="ls-btn-dropdown set-btn">
+                                <img class="dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
                             </button>
-                            <div class="dropdown"></div>
+
+                            <div class="ls-dropdown set-dropdown"></div>
                         </div>
 
                         <button class="ls-explore ls-btn hover-box-2 active-box-1">
@@ -119,7 +120,7 @@
                             <img src="assets\images\icons8-institution-100.png" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">Institution</span>
                         </button>
-                        <button class="ls-courses ls-btn hover-box-2 active-box-1">
+                        <button class="ls-my-courses ls-btn hover-box-2 active-box-1">
                             <img src="assets\images\icons8-read-100.png" alt="" class="ls-btn-icon">
                             <span class="ls-btn-text">My Courses</span>
                         </button>
@@ -159,30 +160,30 @@
 
                     <div class="admin-sidebar-content sidebar-content">
 
-                        <div class="ls-dropdown">
+                        <div class="ls-dropdown-set dropdown-set">
                             <button class="ls-management ls-btn hover-box-2 active-box-1">
                                 <img src="assets\images\icons8-adjust-100.png" alt="" class="ls-btn-icon">
-                                <span class="ls-btn-text">Management</span>
+                                <span class="ls-btn-text set-label">Management</span>
                             </button>
 
-                            <button class="ls-btn-dropdown">
-                                <img class="ls-btn-dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
+                            <button class="ls-btn-dropdown set-btn">
+                                <img class="dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
                             </button>
 
-                            <div class="dropdown">
-                                <button class="ls-dropdown-btn">
+                            <div class="ls-dropdown set-dropdown">
+                                <button class="ls-dropdown-btn dropdown-btn">
                                     <img src="assets\images\icons8-users-100.png" alt="" class="ls-dropdown-icon">
                                     <span class="ls-dropdown-text">Users</span>
                                 </button>
-                                <button class="ls-dropdown-btn">
+                                <button class="ls-dropdown-btn dropdown-btn">
                                     <img src="assets\images\icons8-roles-100 (1).png" alt="" class="ls-dropdown-icon">
                                     <span class="ls-dropdown-text">Roles</span>
                                 </button>
-                                <button class="ls-dropdown-btn">
+                                <button class="ls-dropdown-btn dropdown-btn">
                                     <img src="assets\images\icons8-read-100.png" alt="" class="ls-dropdown-icon">
                                     <span class="ls-dropdown-text">Courses</span>
                                 </button>
-                                <button class="ls-dropdown-btn">
+                                <button class="ls-dropdown-btn dropdown-btn">
                                     <img src="assets\images\icons8-institution-100.png" alt="" class="ls-dropdown-icon">
                                     <span class="ls-dropdown-text">Institutions</span>
                                 </button>
@@ -211,7 +212,178 @@
 
                 </div>
 
-                <div class="index content shadow-box-1"></div>
+                <div class="index content shadow-box-1">
+
+                    <div class="my-courses-page">
+
+                        <h2 class="mcp subtitle">View and manage all courses you are enrolled in</h2>
+
+                        <div class="mcp filter-and-search">
+
+                            <div class="mcp ic-dropdown-set filter dropdown-set">
+                                <button class="mcp ic-dropdown-btn set-btn">
+                                    <p class="set-label">All</p>
+                                    <img class="dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
+                                </button>
+                                <div class="mcp filter-dropdown ic-dropdown dropdown set-dropdown">
+                                    <ul>
+                                        <li><a class="dropdown-btn">All</a></li>
+                                        <li><a class="dropdown-btn">In progress</a></li>
+                                        <li><a class="dropdown-btn">Completed</a></li>
+                                        <li><a class="dropdown-btn">Not started</a></li>
+                                        <li><a class="dropdown-btn">Starred</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <input type="text" class="mcp search" placeholder="Search">
+
+                            <div class="mcp ic-dropdown-set sort dropdown-set">
+                                <button class="mcp ic-dropdown-btn set-btn">
+                                    <p class="set-label">Sort by last accessed</p>
+                                    <img class="dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
+                                </button>
+                                <div class="mcp sort-dropdown ic-dropdown dropdown set-dropdown">
+                                    <ul>
+                                        <li><a class="dropdown-btn">Alphabetical order</a></li>
+                                        <li><a class="dropdown-btn">Date enrolled</a></li>
+                                        <li><a class="dropdown-btn">Last accessed</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="mcp ic-dropdown-set layout dropdown-set">
+                                <button class="mcp ic-dropdown-btn set-btn">
+                                    <p class="set-label">Card</p>
+                                    <img class="dropdown-arrow" src="assets\images\icons8-collapse-arrow-100.png" alt="">
+                                </button>
+                                <div class="mcp layout-dropdown ic-dropdown dropdown set-dropdown">
+                                    <ul>
+                                        <li><a class="dropdown-btn">Card</a></li>
+                                        <li><a class="dropdown-btn">List</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mcp courses-grid">
+                            <div class="course1">
+                                <img src="assets\images\sky-shining-star-3i.jpg" alt="">
+                                <div class="details">
+                                    <a href="" class="title">Course</a>
+                                    <p class="instructor">Fidelis Atseku</p>
+                                    <div class="d-bottom-section">
+                                        <div class="progress">
+                                            <p class="lessons-completed">7/12</p>
+                                            <div class="bar">
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                        <button class="course-card-options">
+                                            <img src="assets\images\icons8-3-dots-30.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course2">
+                                <img src="assets\images\sky-shining-star-3i.jpg" alt="">
+                                <div class="details">
+                                    <a href="" class="title">Course</a>
+                                    <p class="instructor">Fidelis Atseku</p>
+                                    <div class="d-bottom-section">
+                                        <div class="progress">
+                                            <p class="lessons-completed">7/12</p>
+                                            <div class="bar">
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                        <button class="course-card-options">
+                                            <img src="assets\images\icons8-3-dots-30.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course3">
+                                <img src="assets\images\sky-shining-star-3i.jpg" alt="">
+                                <div class="details">
+                                    <a href="" class="title">Course</a>
+                                    <p class="instructor">Fidelis Atseku</p>
+                                    <div class="d-bottom-section">
+                                        <div class="progress">
+                                            <p class="lessons-completed">7/12</p>
+                                            <div class="bar">
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                        <button class="course-card-options">
+                                            <img src="assets\images\icons8-3-dots-30.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course4">
+                                <img src="assets\images\sky-shining-star-3i.jpg" alt="">
+                                <div class="details">
+                                    <a href="" class="title">Course</a>
+                                    <p class="instructor">Fidelis Atseku</p>
+                                    <div class="d-bottom-section">
+                                        <div class="progress">
+                                            <p class="lessons-completed">7/12</p>
+                                            <div class="bar">
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                        <button class="course-card-options">
+                                            <img src="assets\images\icons8-3-dots-30.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course5">
+                                <img src="assets\images\sky-shining-star-3i.jpg" alt="">
+                                <div class="details">
+                                    <a href="" class="title">Course</a>
+                                    <p class="instructor">Fidelis Atseku</p>
+                                    <div class="d-bottom-section">
+                                        <div class="progress">
+                                            <p class="lessons-completed">7/12</p>
+                                            <div class="bar">
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                        <button class="course-card-options">
+                                            <img src="assets\images\icons8-3-dots-30.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course6">
+                                <img src="assets\images\sky-shining-star-3i.jpg" alt="">
+                                <div class="details">
+                                    <a href="" class="title">Course</a>
+                                    <p class="instructor">Fidelis Atseku</p>
+                                    <div class="d-bottom-section">
+                                        <div class="progress">
+                                            <p class="lessons-completed">7/12</p>
+                                            <div class="bar">
+                                                <div class="fill"></div>
+                                            </div>
+                                        </div>
+                                        <button class="course-card-options">
+                                            <img src="assets\images\icons8-3-dots-30.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
 
                 <div class="right sidebar chatbot shadow-box-1 collapsed">
                     <button id="rs-collapse-btn">

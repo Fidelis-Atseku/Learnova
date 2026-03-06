@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 :root {
     --sidebar-width: 70px;
@@ -6,26 +7,27 @@
     --learnova-gradient-right: #26C6DA;
     --btn-hover-background-color: hsla(187, 71%, 50%, 0.3);
     --btn-active-transform-scale: scale(0.95);
+    --main-content-dropdown-background-color: hsl(187, 71%, 90%);
+    --dropdown-btn-hover-background-color: hsl(235, 66%, 70%);
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Quicksand, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .shadow-box-1 {
     box-shadow: 1px 1px 5px 1px hsla(187, 71%, 50%, 0.4);
 }
 body {
     min-height: 100vh;
-    width: 100;
-    padding: 10px;
+    // width: 100vw;
+    // padding: 10px;
     background-image: url("/assets/images/body_background.png");
     background-repeat: repeat;
     background-size: cover;
     background-attachment: fixed;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-}
-body, html {
+    // overflow: hidden;
     &::-webkit-scrollbar {
         width: 10px;
         height: 10px;
@@ -56,9 +58,7 @@ main {
     height: 56px;
     position: sticky;
     top: 10px;
-    transform: translateX(-10px);
     border-radius: 0;
-    width: calc(100vw - 10px);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,7 +66,7 @@ main {
     z-index: 4;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    background-color: hsla(235, 66%, 30%, 0.3);
+    background-color: hsla(235, 66%, 70%, 0.5);
     .left-section {
         display: flex;
         align-items: center;
@@ -80,7 +80,7 @@ main {
             background-color: transparent;
             border-radius: 10px;
             border: none;
-            display: flex;
+            display: none;
             transform: translateX(-90px);
             align-items: center;
             justify-content: center;
@@ -103,6 +103,12 @@ main {
             img {
                 height: 50%;
             }
+        }
+    }
+    .middle-section {
+        .page-title {
+            color: #1A237E;
+            font-size: 1.5rem;
         }
     }
     .right-section {
@@ -138,7 +144,7 @@ main {
             gap: 5px;
             position: relative;
             // overflow: visible;
-            .dropdown-arrow {
+            .role-dropdown-arrow {
                 width: 10px;
                 height: 10px;
             }
@@ -213,7 +219,9 @@ main {
     display: flex;
     gap: 10px;
     min-height: calc(100vh - 86px);
-    // position: relative;
+    margin: 10px;
+    margin-bottom: 0;
+    // padding: 10px;
     & > * {
         border-radius: 10px;
         background-color: hsla(0, 0%, 100%, 0.5);
@@ -222,13 +230,47 @@ main {
         flex-grow: 1;
         margin-left: 85px;
         // min-height: calc(100vh - 86px);
-        height: 150vh;
+        min-height: 150vh;
         transition: margin-left 0.5s ease;
+        padding: 20px;
+        .ic-dropdown-set {
+            position: relative;
+            .ic-dropdown {
+                position: absolute;
+                overflow: hidden;
+                background-color: hsl(187, 71%, 90%);
+                border: 1px solid gray;
+                ul {
+                    text-align: left;
+                        & > *:not(:last-child){
+                            border-bottom: 1px solid gray;
+                        }
+                    li {
+                        height: 30px;
+                        font-size: 0.9rem;
+                        // border-bottom: 1px solid;
+                        a {
+                            display: flex;
+                            align-items: center;
+                            list-style: none;
+                            padding: 0 10px;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        &:hover {
+                            background-color: var(--dropdown-btn-hover-background-color);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .main-footer {
     min-height: 56px;
     background-color: hsla(0, 0%, 100%, 0.5);
+    margin: 10px;
+    margin-top: 0;
 }
 
 .left.sidebar {
@@ -239,22 +281,27 @@ main {
     // height: 76px;
     padding: 15px;
     transition: width 0.5s ease, transform 0.5s ease;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    // background-color: hsla(235, 66%, 30%, 0.5);
     z-index: 2;
     overflow-y: auto;
     overscroll-behavior: contain;
     &::-webkit-scrollbar {
-        width: 6px;
+        width: 10px;
         height: 6px;
         &-track {
             background-color: #7cdce9;
-            border-radius: 5px;
+            // border-radius: 5px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
             // padding: 3px;
         }
         &-thumb {
             background-color: #1A237E;
-            border-radius: 5px;
+            // border-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
             cursor: grab;
             &:active {
                 cursor: grabbing;
@@ -265,7 +312,7 @@ main {
     
     &.ls-collapsed {
         &.scrolling {
-            width: 81px;
+            width: 85px;
         }
         width: 75px;
         .ls-collapse-icon {
@@ -274,34 +321,29 @@ main {
     }
     &.ls-expanded {
         &.scrolling {
-            width: 206px;
+            width: 210px;
         }
         width: 200px;
         .ls-collapse-icon {
             transform: scaleX(-1) rotateZ(-90deg);
         }
     }
-
     .sidebar-content {
         flex-direction: column;
         gap: 10px;
-        .ls-dropdown {
+        .ls-dropdown-set {
             width: 100%;
-            // height: 75px;
-            // height: auto;
             border-radius: 10px;
-            background-color: hsla(187, 71%, 50%, 0.1);
-            // overflow: hidden;
+            background-color: hsla(187, 71%, 50%, 0.3);
             .ls-btn {
                 height: 50px;
+                background-color: hsla(235, 66%, 50%, 0.3);
             }
             .ls-btn-dropdown {
                 width: 100%;
                 height: 20px;
                 border: none;
                 margin-top: 5px;
-                // border-bottom-right-radius: 10px;
-                // border-bottom-left-radius: 10px;
                 border-radius: 7px;
                 background-color: transparent;
                 &:hover {
@@ -311,22 +353,28 @@ main {
                     height: 10px;
                 }
             }
-            .dropdown {
+            .ls-dropdown {
                 display: none;
-                flex-direction: column;
-                gap: 3px;
+                // flex-direction: column;
+                // gap: 3px;
                 padding: 0 5px;
                 padding-bottom: 10px;
+                overflow: hidden;
+                & > *:not(:last-child){
+                    margin-bottom: 3px;
+                }
                 .ls-dropdown-btn {
                     border: none;
                     display: flex;
                     align-items: center;
                     gap: 7px;
                     padding: 2px 7.5px;
+                    width: 100%;
                     overflow: hidden;
                     border-radius: 5px;
                     background-color: hsl(235, 66%, 90%);
                     transition: background-color 0.5s ease;
+                    border: 1px solid hsla(0, 0%, 50%, 0.5);
                     &:hover {
                         background-color: hsla(187, 71%, 50%, 0.3);
                     }
@@ -335,7 +383,7 @@ main {
                         height: 20px;
                     }
                     .ls-dropdown-text {
-                        font-size: 0.6rem;
+                        font-size: 0.7rem;
                         color: #1A237E;
                     }
                 }
@@ -351,8 +399,9 @@ main {
             gap: 15px;
             padding-left: 10px;
             position: relative;
-            background-color: hsla(187, 71%, 50%, 0.1);
-            box-shadow: 0px 0px 3px 1px hsla(187, 71%, 50%, 0.4);
+            background-color: hsla(187, 71%, 50%, 0.3);
+            // box-shadow: 0px 0px 3px 1px hsla(187, 71%, 50%, 0.4);
+            border: 1px solid #1A237E;
             transition: transform 0.2s ease, background-color 0.4s ease;
             .ls-btn-icon {
                 width: 25px;
@@ -378,18 +427,21 @@ main {
                 pointer-events: none;
                 border-radius: 5px;
                 padding: 0 5px;
-                color: #083f46;
+                color: hsl(187, 79%, 5%);
                 font-size: 0.6rem;
                 // word-break: break-all;
                 // white-space: nowrap;
             }
             &:hover {
-                background-color: hsla(187, 71%, 50%, 0.3);
+                background-color: hsla(187, 71%, 50%, 0.6);
             }
             &:active {
                 transform: scale(0.95);
             }
         }
+        // .ls-my-courses {
+        //     background-color: transparent;
+        // }
         .ls-announcements {
             word-break: break-all;
         }
@@ -431,14 +483,13 @@ main {
 
 .right.sidebar {
     position: fixed;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-color: hsla(235, 66%, 30%, 0.5);
+    background-color: hsla(235, 66%, 30%, 0.9);
     transition: all 0.5s ease;
     display: flex;
     flex-direction: column-reverse;
     overscroll-behavior: contain;
     z-index: 1;
+    // border-radius: 10px;
     .input-box {
         background-color: hsl(235, 66%, 60%);
         border-radius: 30px;
@@ -449,6 +500,11 @@ main {
         padding-bottom: 10px;
         flex-shrink: 0;
         width: 240px;
+        #prompt-p {
+            &.empty::before {
+                content: "Ask anything...";
+            }
+        }
         .prompt-text-area {
             background-color: transparent;
             height: auto;
@@ -548,14 +604,14 @@ main {
         right: 20px;
         padding: 20px;
         overflow: hidden;
-        #prompt-p {
-            &.empty::before {
-                content: "Ask anything...";
-            }
-        }
+        // #prompt-p {
+        //     &.empty::before {
+        //         content: "Ask anything...";
+        //     }
+        // }
         #rs-collapse-btn {
-            right: 10px;
-            top: 10px;
+            right: 0px;
+            top: 0px;
         }
     }
     &.collapsed {
@@ -576,6 +632,7 @@ main {
             border: none;
             border-radius: 10px;
             overflow: hidden;
+            z-index: 999;
             #rs-collapse-icon {
                 width: 100%;
                 height: 100%;
@@ -599,6 +656,133 @@ main {
     width: 10%;
 }
 
+.my-courses-page {
+    width: 100%;
+    height: 100%;
+    .subtitle {
+        padding: 30px 0;
+        border-bottom: 1px solid hsla(0, 0%, 0%, 0.5);
+        margin-bottom: 30px;
+        color: #1A237E;
+    }
+    .filter-and-search {
+        // border: 2px solid;
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        & > * {
+            height: 30px;
+            background-color: transparent;
+            &:not(input) button{
+                height: 100%;
+                border-radius: 5px;
+                border: 1px solid hsla(0, 0%, 0%, 0.5);
+                padding: 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                background-color: transparent;
+            }
+        }
+        input {
+            padding: 0 10px;
+            border-radius: 5px;
+            border: 1px solid hsla(0, 0%, 0%, 0.5);
+        }
+        .mcp.ic-dropdown-set {
+            .ic-dropdown {
+                display: none;
+                left: 0;
+                top: 35px;
+                min-width: 150px;
+                border-radius: 5px;
+            }
+        }
+        .dropdown-arrow {
+            height: 10px;
+            height: 10px;
+        }
+    }
+    .courses-grid {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        overflow: hidden;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        // grid-template-rows: repeat(auto-fit, minmax(200px, 200px));
+        & > * {
+            height: 200px;
+            background-color: hsla(187, 71%, 50%, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid gray;
+            max-width: 400px;
+            img {
+                display: block;
+                height: 50%;
+                width: 100%;
+                object-fit: cover;
+            }
+            .details {
+                height: 50%;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                & > * {
+                    font-size: 0.9rem;
+                }
+                .title {
+                    color: hsl(187, 71%, 30%);
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                .d-bottom-section {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: auto;
+                    .progress {
+                        flex-grow: 1;
+                        .bar {
+                            margin-top: 3px;
+                            height: 5px;
+                            border: 1px solid;
+                            .fill {
+                                height: 100%;
+                                width: calc((7/12) * 100%);
+                                background-color: black;
+                            }
+                        }
+                    }
+                    .course-card-options {
+                        background-color: transparent;
+                        border: none;
+                        width: 30px;
+                        height: 30px;
+                        overflow: hidden;
+                        border-radius: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        &:hover {
+                            background-color: hsla(0, 0%, 50%, 0.3);
+                        }
+                        img {
+                            height: 15px;
+                            width: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 500px){
     .main-header {
         .left-section {
@@ -614,13 +798,20 @@ main {
         padding-right: 10px;
         .left-section {
             .ls-hamburger-btn {
-                transform: translateX(0);
+                // transform: translateX(0);
                 width: 30px;
                 height: 30px;
+                display: flex;
                 img {
                     height: 20px;
                     height: 20px;
                 }
+            }
+        }
+        .middle-section {
+            display: none;
+            .page-title {
+                // font-size: 0.5rem;
             }
         }
         .right-section {
@@ -633,9 +824,11 @@ main {
     }
     .main-content {
         .left.sidebar {
-            transform: translateX(-85px);
+            transform: translateX(-95px);
             width: 70px;
-            
+            margin-left: 10px;
+            // padding: 10px 5px;
+            // top: 96px;
             &.ls-collapsed {
                 &.scrolling {
                     width: 80px;
@@ -655,7 +848,7 @@ main {
                 }
             }
             &.ls-hidden {
-                transform: translateX(-85px);
+                transform: translateX(-95px);
             }
             &.ls-shown {
                 transform: translateX(0px);
