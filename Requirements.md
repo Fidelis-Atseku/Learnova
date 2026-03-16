@@ -19,7 +19,7 @@ Student sidebar
 * \- Notifications
 * \- Upcoming events
 * \- Recent updates
-* -Pending Assignments
+* \-Pending Assignments
 * 
 * My Courses
 * Explore courses

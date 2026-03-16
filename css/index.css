@@ -149,11 +149,11 @@ main > * {
   top: 60px;
   right: 40px;
   width: 100px;
-  background-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 10px;
   overflow: hidden;
   padding: 5px;
-  box-shadow: 5px 5px 5px gray;
+  box-shadow: 1px 1px 5px 1px hsla(187, 71%, 50%, 0.4);
 }
 .main-header .right-section .role-dropdown.rd-shown {
   visibility: visible;
@@ -170,14 +170,15 @@ main > * {
   padding-left: 5px;
   color: #1A237E;
   background-color: hsla(187, 71%, 50%, 0.1);
-  transition: background-color 0.5s ease;
-  box-shadow: 0px 0px 3px 1px hsla(187, 71%, 50%, 0.4);
+  transition: background-color 0.5s ease, transform 0.2s ease;
+  box-shadow: 0px 1px 0px 0px hsla(0, 0%, 0%, 0.1);
 }
 .main-header .right-section .role-dropdown > *:hover {
   background-color: hsla(187, 71%, 50%, 0.3);
 }
 .main-header .right-section .role-dropdown > *:active {
-  transform: scale(0.95);
+  transform: translateY(1px);
+  box-shadow: 0px 0px 0px 0px hsla(0, 0%, 0%, 0.1);
 }
 .main-header .right-section .role-dropdown > * img {
   width: 20px;
@@ -244,6 +245,7 @@ main > * {
   padding: 0 10px;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .main-content .index.content .ic-dropdown-set .ic-dropdown ul li:hover {
   background-color: var(--dropdown-btn-hover-background-color);
@@ -306,7 +308,7 @@ main > * {
 }
 .left.sidebar .sidebar-content {
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 .left.sidebar .sidebar-content .ls-dropdown-set {
   width: 100%;
@@ -374,9 +376,9 @@ main > * {
   gap: 15px;
   padding-left: 10px;
   position: relative;
-  background-color: hsla(187, 71%, 50%, 0.3);
-  border: 1px solid #1A237E;
-  transition: transform 0.2s ease, background-color 0.4s ease;
+  background-color: hsla(187, 50%, 70%, 0.5);
+  box-shadow: 0px 1px 1px 1px hsla(0, 0%, 0%, 0.1);
+  transition: transform 0.1s ease, background-color 0.4s ease, box-shadow 0.1s ease;
 }
 .left.sidebar .sidebar-content .ls-btn .ls-btn-icon {
   width: 25px;
@@ -403,12 +405,14 @@ main > * {
   padding: 0 5px;
   color: hsl(187, 79%, 5%);
   font-size: 0.6rem;
+  z-index: 999;
 }
 .left.sidebar .sidebar-content .ls-btn:hover {
-  background-color: hsla(187, 71%, 50%, 0.6);
+  background-color: hsla(187, 50%, 70%, 0.5);
 }
 .left.sidebar .sidebar-content .ls-btn:active {
-  transform: scale(0.95);
+  transform: translate(0px, 1px);
+  box-shadow: 0px 0px 0px 0px hsla(0, 0%, 0%, 0.1);
 }
 .left.sidebar .sidebar-content .ls-announcements {
   word-break: break-all;
@@ -450,6 +454,7 @@ main > * {
   flex-direction: column-reverse;
   overscroll-behavior: contain;
   z-index: 1;
+  box-shadow: 0px 0px 20px 3px hsla(240, 100%, 75%, 0.5);
 }
 .right.sidebar .input-box {
   background-color: hsl(235, 66%, 60%);
@@ -608,6 +613,7 @@ main > * {
 }
 
 .my-courses-page {
+  display: none;
   width: 100%;
   height: 100%;
 }
@@ -642,6 +648,10 @@ main > * {
   padding: 0 10px;
   border-radius: 5px;
   border: 1px solid hsla(0, 0%, 0%, 0.5);
+  box-shadow: inset 0px -1px 3px 0px hsla(0, 0%, 0%, 0.2);
+}
+.my-courses-page .filter-and-search .mcp.ic-dropdown-set .ic-dropdown-btn {
+  box-shadow: inset 0px -1px 3px 0px hsla(0, 0%, 0%, 0.2);
 }
 .my-courses-page .filter-and-search .mcp.ic-dropdown-set .ic-dropdown {
   display: none;
@@ -649,6 +659,7 @@ main > * {
   top: 35px;
   min-width: 150px;
   border-radius: 5px;
+  z-index: 1;
 }
 .my-courses-page .filter-and-search .dropdown-arrow {
   height: 10px;
@@ -658,37 +669,57 @@ main > * {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  overflow: hidden;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 .my-courses-page .courses-grid > * {
   height: 200px;
-  background-color: hsla(187, 71%, 50%, 0.1);
   border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid gray;
+  border: 1px solid hsla(0, 0%, 50%, 0.5);
+  box-shadow: 0 3px 15px hsla(240, 100%, 25%, 0.25);
   max-width: 400px;
+  position: relative;
+}
+.my-courses-page .courses-grid > *::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 20%;
+  background-image: url("/assets/images/sky-shining-star-3i.jpg");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
 }
 .my-courses-page .courses-grid > * img {
   display: block;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   height: 50%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
 .my-courses-page .courses-grid > * .details {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   height: 50%;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  background-color: hsla(0, 0%, 100%, 0.3);
+  backdrop-filter: blur(20px);
 }
 .my-courses-page .courses-grid > * .details > * {
   font-size: 0.9rem;
 }
 .my-courses-page .courses-grid > * .details .title {
-  color: hsl(187, 71%, 30%);
+  color: hsl(187, 71%, 20%);
+  font-weight: bold;
+  font-size: 1rem;
   text-decoration: none;
 }
 .my-courses-page .courses-grid > * .details .title:hover {

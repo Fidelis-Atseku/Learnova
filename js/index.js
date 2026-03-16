@@ -313,9 +313,12 @@ function show_role_dropdown() {
     role_dropdown_hidden = false;
 }
 
-role_dropdown.addEventListener("blur", () => {
-    set(hide_role_dropdown(), 100);
-    hide_role_dropdown();
+document.addEventListener("click", (e) => {
+    const allButtons = [...role_dropdown.querySelectorAll("button"), role_btn];
+    const clickedOutside = allButtons.every(btn => !btn.contains(e.target))
+    if(clickedOutside && role_dropdown_hidden == false){
+        hide_role_dropdown();
+    }
 })
 
 role_btn.addEventListener("click", () => {
@@ -391,9 +394,9 @@ const scrollable_observer = new ResizeObserver(() => {
 })
 scrollable_observer.observe(left_sidebar);
 
-// --------------
+// ----------------
 // general dropdown
-// --------------
+// ----------------
 
 const dropdown_set = document.querySelectorAll(".dropdown-set");
 
@@ -409,6 +412,17 @@ class dropdown_behaviour {
 
         this.set_btn.addEventListener('click', () => {
             this.dropdown_hidden ? this.show_dropdown() : this.hide_dropdown();
+        });
+
+        document.addEventListener("click", e => {
+            const allButtons = [this.set_btn, ...this.dropdown_btn];
+            
+            // Check if click is outside all buttons
+            const clickedOutside = allButtons.every(btn => !btn.contains(e.target));
+            
+            if (clickedOutside && !this.dropdown_hidden && !set.classList.contains("ls-dropdown-set")){
+                this.hide_dropdown();
+            }
         });
 
         if(set.classList.contains("mcp")){
