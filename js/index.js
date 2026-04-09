@@ -402,6 +402,7 @@ const dropdown_set = document.querySelectorAll(".dropdown-set");
 
 class dropdown_behaviour {
     constructor (set){
+        this.set = set;
         this.set_btn = set.querySelector(".set-btn");
         this.set_dropdown = set.querySelector(".set-dropdown");
         this.dropdown_btn = this.set_dropdown.querySelectorAll(".dropdown-btn");
@@ -420,35 +421,60 @@ class dropdown_behaviour {
             // Check if click is outside all buttons
             const clickedOutside = allButtons.every(btn => !btn.contains(e.target));
             
-            if (clickedOutside && !this.dropdown_hidden && !set.classList.contains("ls-dropdown-set")){
+            if (clickedOutside && !this.dropdown_hidden && !set.classList.contains("ls-dropdown-set") && !set.classList.contains("ecp-category")){
                 this.hide_dropdown();
+            }
+
+            if (set.classList.contains("ecp-category")){
+                const ls_btn = set.querySelectorAll(".category-ls-btn");
+                const ls_section_header = set.querySelectorAll(".dropdown-section-header")
+                const allButtons = [this.set_btn, ...ls_btn, ...ls_section_header];
+                const clickedOutside = allButtons.every(btn => !btn.contains(e.target));
+                if(clickedOutside){
+                    this.hide_dropdown();
+                }
             }
         });
 
-        if(set.classList.contains("mcp")){
-            this.dropdown_btn.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if(this.set_dropdown == set.querySelector(".sort-dropdown")){
-                        this.label.textContent = `Sort by ${btn.textContent.toLowerCase()}`;
-                    }
-                    else {
-                        this.label.textContent = btn.textContent;
-                    }
-                    this.hide_dropdown();
-                })
+        this.dropdown_btn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(this.set_dropdown == set.querySelector(".sort-dropdown")){
+                    this.label.textContent = `Sort by ${btn.textContent.toLowerCase()}`;
+                }
+                else {
+                    this.label.textContent = btn.textContent;
+                }
+                this.hide_dropdown();
             })
-        }
+        })
     }
 
     hide_dropdown(){
         this.set_dropdown.style.display = 'none';
         this.dropdown_hidden = true;
-        this.dropdown_arrow.style.transform = "scaleY(1)";
+        try {
+            this.dropdown_arrow.style.transform = "scaleY(1)";
+            category_dropdown_right_section.style.display = "none";
+        } catch{};
+        if (this.set_btn.classList.contains("ecp")){
+            this.set_btn.style.backgroundColor = "";
+        }
     }
     show_dropdown(){
-        this.set_dropdown.style.display = 'block';
+        if (this.set.classList.contains("ecp-category")){
+            this.set_dropdown.style.display = 'flex';
+        }
+        else {
+            this.set_dropdown.style.display = 'block';
+        }
+
         this.dropdown_hidden = false;
-        this.dropdown_arrow.style.transform = "scaleY(-1)";
+        try {
+            this.dropdown_arrow.style.transform = "scaleY(-1)";
+        } catch{};
+        if (this.set_btn.classList.contains("ecp")){
+            this.set_btn.style.backgroundColor = "hsla(187, 71%, 50%, 0.3)";
+        }
     }
 
 }
@@ -456,3 +482,108 @@ class dropdown_behaviour {
 dropdown_set.forEach(set => {
     new dropdown_behaviour(set);
 })
+
+// ---------------------
+// ecp category dropdown
+// ---------------------
+
+const exploreCoursesPage = document.querySelector(".explore-courses-page");
+const category_dropdown_left_section_btns = exploreCoursesPage.querySelectorAll(".left-section .category-ls-btn");
+const category_dropdown_right_section = exploreCoursesPage.querySelector("#ecp-category-sd .right-section");
+const category_dropdown_right_section_content = category_dropdown_right_section.querySelectorAll(".rs-dropdown");
+category_dropdown_left_section_btns.forEach(btn => {
+    // let dropdown_hidden = true;
+    btn.addEventListener("click", (event) => {
+        const btn_id = btn.getAttribute("id");
+        const dropdown_class = btn_id.replace("btn", "dropdown");
+        const btn_dropdown = exploreCoursesPage.querySelector(`.${dropdown_class}`);
+
+        category_dropdown_left_section_btns.forEach(Btn => {
+            if (Btn !== btn){
+                Btn.style.backgroundColor = "";
+            }
+            else {
+                Btn.style.backgroundColor = "hsl(235, 66%, 70%)";
+            }
+        })
+        
+        btn_dropdown.style.display = "block";
+        category_dropdown_right_section.style.display = "block";
+        // console.log(dropdown_hidden);
+
+        category_dropdown_right_section_content.forEach(dropdown => {
+            if (dropdown !== btn_dropdown){
+                dropdown.style.display = "none";
+            }
+        })
+    })
+})
+category_dropdown_right_section_content.forEach(dropdown => {
+    dropdown.addEventListener("click", () => {
+    })
+})
+
+// Slider
+
+function ecpFeaturedCoursesSectionSliders() {
+    const ecpFeaturedCoursesSection = exploreCoursesPage.querySelector(".featured-courses-section");
+    const slideContainers = ecpFeaturedCoursesSection.querySelectorAll(".slideContainer");
+
+    slideContainers.forEach((slideContainer) => {
+        const indicators = slideContainer.nextElementSibling.querySelectorAll("div");
+        const slides = Array.from(slideContainer.children);
+        const firstSlide = slides[0];
+        const clone = firstSlide.cloneNode(true);
+        slideContainer.appendChild(clone);
+
+        let interval;
+        let itemWidth = 0;
+
+        function updateItemWidth() {
+            itemWidth = firstSlide.getBoundingClientRect().width;
+        }
+
+        requestAnimationFrame(updateItemWidth);
+        window.addEventListener("resize", updateItemWidth);
+
+        function startAutoScroll() {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                slideContainer.scrollBy({
+                    left: itemWidth,
+                    behavior: "smooth",
+                });
+            }, 10000);
+        }
+
+        function updateIndicators() {
+            if (itemWidth === 0) return;
+            let index = Math.round(slideContainer.scrollLeft / itemWidth);
+            if (index >= slides.length) index = 0;
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle("active", i === index);
+            });
+        }
+
+        slideContainer.addEventListener("scroll", () => {
+            if (itemWidth === 0) return;
+
+            const tolerance = 1;
+            if (slideContainer.scrollLeft >= slideContainer.scrollWidth - itemWidth - tolerance) {
+                slideContainer.scrollTo({
+                    left: 0,
+                    behavior: "auto",
+                });
+            }
+
+            updateIndicators();
+
+            clearInterval(interval);
+            setTimeout(startAutoScroll, 150);
+        });
+
+        startAutoScroll();
+    });
+}
+
+ecpFeaturedCoursesSectionSliders();
