@@ -293,7 +293,7 @@ async function renderPage(page) {
     }
 
     // Initialize navigation
-    navigate(page, "explore-courses");
+    navigate(page, "home");
 }
 
 renderPage("public");
