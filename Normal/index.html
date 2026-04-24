@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <link rel="stylesheet" href="css/card.css"> -->
+    <script src="js/main.js" defer></script>
+    <script src="js/router.js" defer></script>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- HEADER -->
+        <header class="app-header app-header--user">
+
+            <!-- Left -->
+            <div class="app-header__left">
+                <button class="app-header__button app-header__button--sidebar-toggle app-header__button--sidebar-toggle-collapsed">
+                    <img src="assets\icons\icons8-hamburger-menu-100.png" alt="" class="primary">
+                    <img src="assets\icons\icons8-hamburger-menu-100.png" alt="" class="secondary">
+                </button>
+
+                <div class="app-header__logo">
+                    <img src="assets\images\learnova-icon.png" alt="">
+                    <img src="assets\images\learnova-text.png" alt="">
+                </div>
+            </div>
+
+            <!-- Center -->
+            <div class="app-header__center">
+                <div class="app-header__title">DASHBOARD</div>
+            </div>
+
+            <!-- Right -->
+            <div class="app-header__right app-header__right--primary">
+
+                <!-- Primary -->
+                <button class="app-header__button app-header__button--calendar">
+                    <img src="assets/icons/icons8-calendar-100.png" alt="">
+                </button>
+                <button class="app-header__button app-header__button--notifications">
+                    <img src="assets/icons/icons8-notification-64.png" alt="">
+                </button>
+                <button class="app-header__button app-header__button--messages">
+                    <img src="assets\icons\icons8-message-100.png" alt="">
+                </button>
+                <button class="app-header__button app-header__button--profile">
+                    <img src="assets/icons/icons8-account-100.png" alt="">
+                </button>
+
+            </div>
+
+            <!-- Secondary -->
+            <div class="app-header__right app-header__right--secondary">
+                <button class="app-header__button app-header__button--login">log in</button>
+                <button class="app-header__button app-header__button--signup">sign up</button>
+            </div>
+
+            <!-- Temporary element -->
+            <button class="app-header-toggle">
+                Header toggle
+            </button>
+
+        </header>
+
+        <!-- BODY -->
+        <div class="app-body">
+
+            <!-- Sidebar -->
+             <aside class="sidebar sidebar--collapsed">
+                <div class="sidebar-content" data-route="onboardin,./kk/g">
+                    <!-- Main section title -->
+                    <p class="sidebar__section-title">MAIN</p>
+
+                    <!-- Dashboard page button -->
+                    <button class="sidebar__button sidebar__button--selected sidebar__button--dashboard" data-route="dashboard">
+                        <img src="assets\icons\SVGs\icons8-home.svg" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Dashboard</p>
+                    </button>
+
+                    <!-- My courses page button -->
+                    <button class="sidebar__button sidebar__button--my-courses" data-route="my-courses">
+                        <img src="assets\icons\icons8-read-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">My Courses</p>
+                    </button>
+
+                    <!-- Explore courses page button -->
+                    <button class="sidebar__button sidebar__button--explore-courses" data-route="explore-courses">
+                        <img src="assets\icons\SVGs\icons8-binoculars.svg" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Explore Courses</p>
+                    </button>
+
+                    <!-- Institution page button -->
+                    <button class="sidebar__button sidebar__button--institutions" data-route="institutions">
+                        <img src="assets\icons\icons8-institution-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Institutions</p>
+                    </button>
+
+                    <!-- Tasks section title -->
+                    <p class="sidebar__section-title">Tasks</p>
+
+                    <!-- Assignments page button -->
+                    <button class="sidebar__button sidebar__button--assignments" data-route="assignments">
+                        <img src="assets\icons\icons8-assignment-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Assignments</p>
+                    </button>
+
+                    <!-- Quizzes page button -->
+                    <button class="sidebar__button sidebar__button--quizzes" data-route="quizzes">
+                        <img src="assets\icons\icons8-quiz-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Quizzes</p>
+                    </button>
+
+                    <!-- Communication section title -->
+                    <p class="sidebar__section-title">Communication</p>
+
+                    <!-- Announcements page button -->
+                    <button class="sidebar__button sidebar__button--announcements" data-route="announcements">
+                        <img src="assets\icons\icons8-announcement-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Announcements</p>
+                    </button>
+
+                    <!-- Messages page button -->
+                    <button class="sidebar__button sidebar__button--messages" data-route="messages">
+                        <img src="assets\icons\icons8-message-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Messages</p>
+                    </button>
+
+                    <!-- Discussions page button -->
+                    <button class="sidebar__button sidebar__button--discussions" data-route="discussions">
+                        <img src="assets\icons\icons8-discussion-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Discussions</p>
+                    </button>
+
+                    <!-- Other section title -->
+                    <p class="sidebar__section-title">Other</p>
+
+                    <!-- Help page button -->
+                    <button class="sidebar__button sidebar__button--help" data-route="help">
+                        <img src="assets\icons\icons8-help-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">Help</p>
+                    </button>
+
+                    <!-- About us page button -->
+                    <button class="sidebar__button sidebar__button--about-us" data-route="about-us">
+                        <img src="assets\icons\icons8-about-us-100.png" alt="" class="sidebar__button-icon">
+                        <p class="sidebar__button-label">About us</p>
+                    </button>
+
+                    <!-- Settings -->
+                    <div class="sidebar__bottom-section">
+                        <hr>
+                        <button class="sidebar__button sidebar__button--settings" data-route="settings">
+                            <img src="assets\icons\icons8-settings-100.png" alt="" class="sidebar__button-icon">
+                            <p class="sidebar__button-label">Settings</p>
+                        </button>
+                    </div>
+
+                </div>
+            </aside>
+
+            <main class="app-content"></main>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="app-footer"></footer>
+
+    </div>
+
+    <!-- <button class="chatbot-toggle" title="Open and close chatbot"></button>
+    <div class="chatbot"></div> -->
+
+</body>
